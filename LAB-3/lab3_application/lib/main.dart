@@ -73,6 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _incrementClear() {
+    setState(() {
+      _counter = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -131,6 +137,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   backgroundColor: Colors.green,
                 ),
               ]
+            ),
+            TextButton(
+              style: ButtonStyle(
+                foregroundColor: MaterialStateProperty.all(Colors.grey),
+                overlayColor: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ? Colors.grey.shade200 : null),
+                backgroundColor: MaterialStateProperty.all(Colors.transparent),
+              ),
+              onPressed: _incrementClear,
+              child: Text('Сбросить'), // Текст кнопки
             )
           ],
         ),
