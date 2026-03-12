@@ -67,6 +67,12 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _incrementMinuser() {
+    setState(() {
+      _counter--;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -113,7 +119,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
-                  onPressed: _incrementCounter,
+                  onPressed: _incrementMinuser,
                   tooltip: 'Increment',
                   child: const Icon(Icons.remove),
                   backgroundColor: Colors.red,
