@@ -25,25 +25,25 @@ class MyHomePage extends StatefulWidget {
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<MyHomePage> createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void incrementCounter() {
     setState(() {
       _counter++;
     });
   }
 
-  void _incrementMinuser() {
+  void decrementCounter() {
     setState(() {
       _counter--;
     });
   }
 
-  void _incrementClear() {
+  void incrementClear() {
     setState(() {
       _counter = 0;
     });
@@ -69,13 +69,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: .center,
               children: [
                 FloatingActionButton(
-                  onPressed: _incrementMinuser,
-                  tooltip: 'Increment',
+                  onPressed: decrementCounter,
+                  tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
                   backgroundColor: Colors.red,
                 ),
                 FloatingActionButton(
-                  onPressed: _incrementCounter,
+                  onPressed: incrementCounter,
                   tooltip: 'Increment',
                   child: const Icon(Icons.add),
                   backgroundColor: Colors.green,
@@ -88,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 overlayColor: MaterialStateProperty.resolveWith((states) => states.contains(MaterialState.pressed) ? Colors.grey.shade200 : null),
                 backgroundColor: MaterialStateProperty.all(Colors.transparent),
               ),
-              onPressed: _incrementClear,
+              onPressed: incrementClear,
               child: Text('Сбросить'), // Текст кнопки
             )
           ],
