@@ -55,10 +55,33 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           children: [
             Image.asset('assets/dormitories.webp'),
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Padding(
+              padding: EdgeInsets.all(32),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Комплекс общежитий',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          'Краснодар, ул. Калинина 13к',
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 116, 119, 115),
+                            fontSize: 14,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
