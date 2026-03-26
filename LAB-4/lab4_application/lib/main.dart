@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,12 +32,46 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _countOfLikes = 26;
+  bool _isLovedByUser = false;
 
-  void _incrementCounter() {
+  int calculateCountOfLikes(bool isLovedByUser, int likesCount) {
+    return isLovedByUser ? likesCount - 1 : likesCount + 1;
+  }
+
+  bool stateOfHeartChanger(bool isLovedByUser) {
+    return !isLovedByUser;
+  }
+
+  void toggleLike() {
+    final newCountOfLikes = calculateCountOfLikes(_isLovedByUser, _countOfLikes);
+    final newStateOfHeartChanger = stateOfHeartChanger(_isLovedByUser);
+
     setState(() {
-      _counter++;
+      _countOfLikes = newCountOfLikes;
+      _isLovedByUser = newStateOfHeartChanger;
     });
+  }
+
+  Future<void> openPhoneApp() async {
+    final Uri launchUri = Uri(scheme: 'tel', path: '+77777777777');
+    await launchUrl(launchUri);
+  }
+
+  Future<void> openMapsApp() async {
+    final Uri mapUri = Uri.parse(
+      'geo:0,0?q=45.0502933,38.9207626(Комплекс общежитий)',
+    );
+
+    await launchUrl(mapUri, mode: LaunchMode.externalApplication);
+  }
+
+  Future<void> openShareDialogWindow() async {
+    SharePlus.instance.share(
+      ShareParams(
+        text: 'Комплекс общежитий КубГАУ\nАдрес: Краснодар, ул. Калинина, 13к',
+      ),
+    );
   }
 
   @override
@@ -80,16 +116,95 @@ class _MyHomePageState extends State<MyHomePage> {
                       ],
                     ),
                   ),
+                  InkWell(
+                    onTap: toggleLike,
+                    borderRadius: BorderRadius.circular(20),
+                    child: Row(
+                      children: [
+                        Icon(
+                          _isLovedByUser ? Icons.favorite : Icons.favorite_border,
+                          color: Colors.red,
+                          size: 28,
+                        ),
+                        SizedBox(width: 4),
+                        Text(
+                          '$_countOfLikes',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
+            SizedBox(height: 28),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                InkWell(
+                  onTap: () {
+                    openPhoneApp();
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Column(
+                    children: [
+                      Icon(Icons.phone, color: Colors.green, size: 32),
+                      SizedBox(height: 4),
+                      Text(
+                        'ПОЗВОНИТЬ',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    openMapsApp();
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Column(
+                    children: [
+                      Icon(Icons.near_me, color: Colors.green, size: 32),
+                      SizedBox(height: 4),
+                      Text(
+                        'МАРШРУТ',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    openShareDialogWindow();
+                  },
+                  borderRadius: BorderRadius.circular(12),
+                  child: Column(
+                    children: [
+                      Icon(Icons.share, color: Colors.green, size: 32),
+                      SizedBox(height: 4),
+                      Text(
+                        'ПОДЕЛИТЬСЯ',
+                        style: TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
