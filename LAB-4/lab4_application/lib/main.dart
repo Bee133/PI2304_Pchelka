@@ -53,8 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: .center,
           children: [
+            Image.asset('assets/dormitories.webp'),
             const Text('You have pushed the button this many times:'),
             Text(
               '$_counter',
