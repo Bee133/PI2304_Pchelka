@@ -137,71 +137,97 @@ class _MyHomePageState extends State<MyHomePage> {
                 ],
               ),
             ),
-            SizedBox(height: 28),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                InkWell(
-                  onTap: () {
-                    openPhoneApp();
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Column(
+            Padding(
+              padding: EdgeInsets.all(32),
+              child: Column(
+                children: [
+                  SizedBox(height: 28),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(Icons.phone, color: Colors.green, size: 32),
-                      SizedBox(height: 4),
-                      Text(
-                        'ПОЗВОНИТЬ',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
+                      InkWell(
+                        onTap: () {
+                          openPhoneApp();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.phone, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'ПОЗВОНИТЬ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          openMapsApp();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.near_me, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'МАРШРУТ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          openShareDialogWindow();
+                        },
+                        borderRadius: BorderRadius.circular(12),
+                        child: Column(
+                          children: [
+                            Icon(Icons.share, color: Colors.green, size: 32),
+                            SizedBox(height: 4),
+                            Text(
+                              'ПОДЕЛИТЬСЯ',
+                              style: TextStyle(
+                                color: Colors.green,
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    openMapsApp();
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Column(
-                    children: [
-                      Icon(Icons.near_me, color: Colors.green, size: 32),
-                      SizedBox(height: 4),
-                      Text(
-                        'МАРШРУТ',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
+                  SizedBox(height: 28),
+                  Text(
+                    'Студенческий городок или так называемый кампус Кубанского ГАУ состоит '
+                        'из двадцати общежитий, в которых проживает более 8000 студентов, что составляет '
+                        '96% от всех нуждающихся. Студенты первого курса обеспечены местами в общежитии '
+                        'полностью. В соответствии с Положением о студенческих общежитиях '
+                        'университета, при поселении между администрацией и студентами заключается '
+                        'договор найма жилого помещения. Воспитательная работа в общежитиях направлена '
+                        'на улучшение быта, соблюдение правил внутреннего распорядка, отсутствия '
+                        'асоциальных явлений в молодежной среде. Условия проживания в общежитиях '
+                        'университетского кампуса полностью отвечают санитарным нормам и требованиям: '
+                        'наличие оборудованных кухонь, душевых комнат, прачечных, читальных залов, '
+                        'комнат самоподготовки, помещений для заседаний студенческих советов и '
+                        'наглядной агитации. С целью улучшения условий быта студентов активно работает '
+                        'система студенческого самоуправления - студенческие советы организуют всю работу '
+                        'по самообслуживанию.',
+                    style: TextStyle(fontSize: 16, height: 1.5),
+                    textAlign: TextAlign.justify,
                   ),
-                ),
-                InkWell(
-                  onTap: () {
-                    openShareDialogWindow();
-                  },
-                  borderRadius: BorderRadius.circular(12),
-                  child: Column(
-                    children: [
-                      Icon(Icons.share, color: Colors.green, size: 32),
-                      SizedBox(height: 4),
-                      Text(
-                        'ПОДЕЛИТЬСЯ',
-                        style: TextStyle(
-                          color: Colors.green,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
