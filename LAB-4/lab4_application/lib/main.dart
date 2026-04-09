@@ -53,9 +53,65 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  Future<void> openPhoneApp() async {
-    final Uri launchUri = Uri(scheme: 'tel', path: '+77777777777');
-    await launchUrl(launchUri);
+  Future<void> openContactOptions(BuildContext context) async {
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      builder: (context) {
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('Позвонить'),
+                onTap: () => Navigator.pop(context, 'phone'),
+              ),
+              ListTile(
+                title: Text('Gmail'),
+                onTap: () => Navigator.pop(context, 'gmail'),
+              ),
+              ListTile(
+                title: Text('Сообщение'),
+                onTap: () => Navigator.pop(context, 'sms'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+
+    if (choice == null) return;
+
+    Uri uri;
+
+    switch (choice) {
+      case 'phone':
+        uri = Uri(scheme: 'tel', path: '+77777777777');
+        await launchUrl(uri);
+        break;
+
+      case 'gmail':
+        uri = Uri(
+          scheme: 'mailto',
+          path: 'example@gmail.com',
+          query: Uri.encodeFull('subject=Hello&body=Hi there'),
+        );
+        await launchUrl(uri);
+        break;
+
+      case 'sms':
+        uri = Uri(scheme: 'sms', path: '+77777777777');
+        await launchUrl(uri);
+        break;
+
+      default:
+        return;
+    }
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri);
+    } else {
+      throw 'Не удалось открыть $uri';
+    }
   }
 
   Future<void> openMapsApp() async {
@@ -147,7 +203,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     children: [
                       InkWell(
                         onTap: () {
-                          openPhoneApp();
+                          openContactOptions(context);
                         },
                         borderRadius: BorderRadius.circular(12),
                         child: Column(
@@ -155,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Icon(Icons.phone, color: Colors.green, size: 32),
                             SizedBox(height: 4),
                             Text(
-                              'ПОЗВОНИТЬ',
+                              'Связаться',
                               style: TextStyle(
                                 color: Colors.green,
                                 fontSize: 14,
