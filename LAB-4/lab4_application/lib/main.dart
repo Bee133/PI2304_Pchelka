@@ -211,7 +211,7 @@ class _MyHomePageState extends State<MyHomePage> {
                             Icon(Icons.phone, color: Colors.green, size: 32),
                             SizedBox(height: 4),
                             Text(
-                              'Связаться',
+                              'СВЯЗАТЬСЯ',
                               style: TextStyle(
                                 color: Colors.green,
                                 fontSize: 14,
